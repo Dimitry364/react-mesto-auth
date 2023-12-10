@@ -19,7 +19,7 @@ function Register(props) {
   }
 
   return (
-    <section className="login">
+    <main className="login">
       <h2 className="login__title">Регистрация</h2>
       <form className="login__form" onSubmit={handleSubmit}>
         <input
@@ -49,7 +49,7 @@ function Register(props) {
           Войти
         </Link>{" "}
       </p>
-    </section>
+    </main>
   );
 }
 

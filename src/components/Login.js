@@ -18,14 +18,14 @@ function Login(props) {
   }
 
   return (
-    <section className="login">
-      <h2 className="login__title">Вход</h2>
+    <main className="login">
+      <h1 className="login__title">Вход</h1>
       <form className="login__form" onSubmit={handleSubmit}>
         <input className="login__input" type="email" placeholder="Email" value={email} onChange={handleEmailInput} required/>
         <input className="login__input" type="password" placeholder="Пароль" value={password} autoComplete="on" onChange={handlePasswordInput} required/>
         <button className="login__btn" type="submit">Войти</button>
       </form>
-    </section>
+    </main>
   );
 }
 

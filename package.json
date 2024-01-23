@@ -1,5 +1,5 @@
 {
-  "homepage": "https://dimitry364.github.io/react-mesto-auth/",
+  "homepage": "https://Dimitry364.github.io/react-mesto-auth",
   "name": "react-mesto-auth",
   "version": "0.1.0",
   "private": true,
@@ -40,6 +40,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.1.0"
+    "gh-pages": "^6.1.0",
+    "webpack-cli": "^5.1.4"
   }
 }

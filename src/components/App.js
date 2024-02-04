@@ -78,7 +78,7 @@ function App() {
         .then((res) => {
           if (res) {
             setIsLoggedIn(true);
-            setEmailName(res.data.email);
+            setEmailName(res.email);
           }
         })
         .catch((err) => {
@@ -88,16 +88,19 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    api
-      .getInitialData()
-      .then(([userData, cardsData]) => {
-        setCurrentUser(userData);
-        setCards(cardsData);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
+    if (isLoggedIn === true)
+    {
+      api
+        .getInitialData()
+        .then(([userData, cardsData]) => {
+          setCurrentUser(userData);
+          setCards(cardsData);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [isLoggedIn]);
 
   React.useEffect(() => {
     if (isLoggedIn === true) {
@@ -106,7 +109,7 @@ function App() {
   }, [isLoggedIn, navigate]);
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
 
     api
       .likeCard(card._id, isLiked)

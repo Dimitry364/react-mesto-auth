@@ -80,9 +80,9 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-77",
+  baseUrl: "https://api.yarushkin.practicum.nomoredomainsmonster.ru",
   headers: {
-    authorization: "1a5c2685-c177-4bf1-8fad-293b36b650f1",
+    'Authorization': `Bearer ${localStorage.getItem("jwt")}`,
     "Content-Type": "application/json",
   },
 });

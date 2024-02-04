@@ -11,14 +11,14 @@ class Api {
   getUser() {
     return this._request(this._baseUrl + "/users/me", {
       method: "GET",
-      headers: this._headers,
+      headers: this._getHeaders(),
     });
   }
 
   setUser({ name, about }) {
     return this._request(this._baseUrl + "/users/me", {
       method: "PATCH",
-      headers: this._headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({
         name,
         about,
@@ -29,7 +29,7 @@ class Api {
   updateAvatar(data) {
     return this._request(this._baseUrl + "/users/me/avatar", {
       method: "PATCH",
-      headers: this._headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({
         avatar: data.avatarSrc,
       }),
@@ -39,7 +39,7 @@ class Api {
   addCard({ name, link }) {
     return this._request(this._baseUrl + "/cards", {
       method: "POST",
-      headers: this._headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({
         name: name,
         link: link,
@@ -50,22 +50,29 @@ class Api {
   likeCard(cardId, isLiked) {
     return this._request(this._baseUrl + "/cards/likes/" + cardId, {
       method: isLiked ? "DELETE" : "PUT",
-      headers: this._headers,
+      headers: this._getHeaders(),
     });
   }
 
   deleteCard(data) {
     return this._request(this._baseUrl + `/cards/${data._id}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: this._getHeaders(),
     });
   }
 
   getInitialCards() {
     return this._request(this._baseUrl + "/cards", {
       method: "GET",
-      headers: this._headers,
+      headers: this._getHeaders(),
     });
+  }
+
+  _getHeaders() {
+    return {
+      'Authorization': `Bearer ${localStorage.getItem("jwt")}`,
+      ...this._headers,
+    }
   }
 
   _request(url, options) {
@@ -82,7 +89,6 @@ class Api {
 const api = new Api({
   baseUrl: "https://api.yarushkin.practicum.nomoredomainsmonster.ru",
   headers: {
-    'Authorization': `Bearer ${localStorage.getItem("jwt")}`,
     "Content-Type": "application/json",
   },
 });
